@@ -1,0 +1,57 @@
+name: teste_api
+description: "A new Flutter project."
+publish_to: 'none' 
+version: 1.0.0+1
+
+environment:
+ sdk: '>=3.0.0 <4.0.0'
+
+dependencies:
+  flutter:
+    sdk: flutter
+  intl: ^0.17.0
+  barcode_widget: ^2.0.4
+  dio: ^4.0.0
+  provider: ^6.1.1
+  json_annotation: ^4.8.1
+  flutter_native_splash: ^2.3.10
+  flutter_config: ^2.0.2
+  flutter_launcher_icons: ^0.13.1
+  google_fonts: ^6.1.0
+  shared_preferences: ^2.2.2
+
+
+  cupertino_icons: ^1.0.6
+  flutter_dotenv: ^5.1.0
+
+flutter_native_splash:
+  color: "#808080"
+  image: "assets/app/logobersek.jpg"
+  android: true
+  ios: true
+
+flutter_launcher_icons:
+  image_path: "assets/app/guts.jpg"
+  ios: true
+  remove_alpha_ios: true
+  android: "launcher_icon"
+  adaptive_icon_background: "#FFFFFF"
+  adaptive_icon_foreground: "assets/app/logobersek.jpg"
+  
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^3.0.0
+  build_runner: ^2.4.7
+  json_serializable: ^6.7.1
+
+flutter:
+  uses-material-design: true
+
+  assets:
+  - assets/app/logobersek.jpg
+  - assets/app/guts.jpg
+  - assets/app/facebookIcon.png
+  - assets/app/profilepicture.png
+  - assets/app/resetpasswordicon.png
+  - .env
