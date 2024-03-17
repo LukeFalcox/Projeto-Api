@@ -57,7 +57,7 @@ class AppSettings extends ChangeNotifier {
       final jsonString = jsonEncode(setupModelJson);
       await _prefs.setString('setupModel', jsonString);
     }
-    await _readLocale(); // Ira atualizar as informações
+    await _readLocale();
   }
 
   

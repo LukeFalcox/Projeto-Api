@@ -19,7 +19,7 @@ class CreatedLogin extends State<Login> {
   final TextEditingController _nameController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
   final TextEditingController _aliasController = TextEditingController();
-
+  
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -133,7 +133,7 @@ class CreatedLogin extends State<Login> {
                       textAlign: TextAlign.right,
                       style: TextStyle(fontSize: 13),
                     ),
-                    onPressed: () {
+                                        onPressed: () {
                       Navigator.push(
                         context,
                         MaterialPageRoute(
@@ -144,7 +144,7 @@ class CreatedLogin extends State<Login> {
                   ),
                 ),
               ],
-            ),
+                          ),
             const SizedBox(height: 40),
             SizedBox(
               width: 100,

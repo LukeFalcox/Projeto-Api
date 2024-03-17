@@ -5,9 +5,9 @@ import 'package:teste_api/app/models/transformador.dart';
 import 'package:teste_api/pages/login.dart';
 
 class Edit extends StatefulWidget {
+  
+  const Edit({super.key,  required this.filtroModel});
   final FiltroModel filtroModel;
-  const Edit({super.key, required this.filtroModel});
-
   @override
   // ignore: no_logic_in_create_state
   State<Edit> createState() => _EditState(filtroModel: filtroModel);

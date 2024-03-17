@@ -10,6 +10,7 @@ import 'package:teste_api/pages/home.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:teste_api/widgets/splashScreen.dart';
 import 'pages/login.dart';
+import 'package:web/web.dart';
 
 void main() async {
   await dotenv.load(fileName: '.env');
@@ -41,7 +42,14 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.grey,
       ),
-      home: const SplashScreen(),
+      routes: {
+  '/': (context) => const Login(),
+  '/home': (context) => Home(),
+  '/edit': (context) {
+  final args = ModalRoute.of(context)!.settings.arguments;
+  return Edit(filtroModel: args as FiltroModel);
+},
+},
     );
   }
 }

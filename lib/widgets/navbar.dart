@@ -11,6 +11,7 @@ import 'package:teste_api/app/models/Exp.dart';
 import 'package:teste_api/app/models/Rotinas.dart';
 import 'package:teste_api/app/models/transformador.dart';
 import 'package:teste_api/pages/edit.dart';
+import 'package:teste_api/widgets/buttonLogout.dart';
 
 class NavBar extends StatefulWidget {
   const NavBar({super.key});
@@ -27,11 +28,12 @@ class _NavBarState extends State<NavBar> {
 /* ------------------------------------------------*/
 
 
+  @override
   Widget build(BuildContext context) {
     return Consumer2<AppSettings, AppService>(
       builder: (context, appSettings, appService, child) {
         return Drawer(
-          child: Column(
+          child:  Column(
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
               Image.asset("assets/app/logobersek.jpg"),
@@ -40,13 +42,7 @@ class _NavBarState extends State<NavBar> {
               ),
               Padding(
                 padding: const EdgeInsets.only(bottom: 24.0),
-                child: ListTile(
-                  title: const Text('Logout'),
-                  leading: const Icon(Icons.logout),
-                  onTap: () {
-                    appService.logout(context);
-                  },
-                ),
+                child: ButtonLogout(appService:appService)
               ),
             ],
           ),
@@ -70,7 +66,7 @@ class _NavBarState extends State<NavBar> {
             title: Text(
               exp.nome,
               style: GoogleFonts.openSans(
-                  textStyle: TextStyle(letterSpacing: .5)),
+                  textStyle: const TextStyle(letterSpacing: .5)),
             ),
             children: exp.rotinas.map(
               (items) {
@@ -78,12 +74,12 @@ class _NavBarState extends State<NavBar> {
                   title: Text(
                     items.nome,
                     style: GoogleFonts.openSans(
-                        textStyle: TextStyle(letterSpacing: .5)),
+                        textStyle: const TextStyle(letterSpacing: .5)),
                   ),
                   onTap: () async {
                     final response = await appService.getRotina(items.api);
                     FiltroModel filtroModel =
-                        FiltroModel.fromJson(jsonDecode(response.data));
+                        FiltroModel.fromJson(jsonDecode(response?.data));
                     await navigateToEdit(context, filtroModel);
                   },
                 );
@@ -171,15 +167,7 @@ Future<void> navigateToEdit(BuildContext context, var filtro) async {
     await Future.delayed(const Duration(seconds: 2));
 
     Navigator.pop(context);
-
-    Navigator.push(
-      context,
-      MaterialPageRoute(
-        builder: (context) => Edit(
-          filtroModel: filtro,
-        ),
-      ),
-    );
+    Navigator.of(context).pushNamed('/edit', arguments: filtro);
   } catch (e) {
     Navigator.pop(context);
 

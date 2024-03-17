@@ -25,7 +25,6 @@ class AppService extends ChangeNotifier {
   String? endpoint;
   String? token;
   String? userID;
-  BuildContext? context;
   Map<String, dynamic>? menus;
   String? contUrl;
   String? cont_Url;
@@ -35,16 +34,25 @@ class AppService extends ChangeNotifier {
 /* ------------------- Parte 1 --------------------*/
 /* ------------------------------------------------*/
 /* ------------------------------------------------*/
-  Future<void> tryLogin(String username, String password, String alias) async {
-    await dotenv.load(fileName: ".env");
-    cont_Url = dotenv.env['REMOVER_URL'];
-    contUrl = dotenv.env['REMOVERURL'];
-    String? url = dotenv.env['API'];
-    final response = await Dio()
-        .post('${url!}usuario=$username&senha=$password&alias=$alias');
-    _setupModel = SetupModel.fromJson(response.data);
+  Future<void>? tryLogin(String username, String password, String alias) async {
+    try {
+      await dotenv.load(fileName: ".env");
+      cont_Url = dotenv.env['REMOVER_URL'];
+      contUrl = dotenv.env['REMOVERURL'];
+      String? url = dotenv.env['API'];
+      final response = await Dio()
+          .post('${url!}usuario=$username&senha=$password&alias=$alias');
+      _setupModel = SetupModel.fromJson(response.data);
+      print(setupModel);
+      notifyListeners();
+    } catch (e) {
+      // Trate a exceção de acordo com sua necessidade
+      print('Erro ao fazer login: $e');
+    }
+  }
 
-    notifyListeners();
+  SetupModel getSetupModel() {
+    return setupModel!;
   }
 
 /* ------------------------------------------------*/
@@ -53,15 +61,15 @@ class AppService extends ChangeNotifier {
 /* ------------------------------------------------*/
 /* ------------------------------------------------*/
 
-  Future<Response> getRotina(String? rotina) async {
+  Future<Response>? getRotina(String? rotina) async {
     await dotenv.load(fileName: ".env");
     if (_appSettings.conta['setupModel'] == null) {
       throw Exception('O objeto setupModel é nulo.');
     }
 
-    endpoint = _appSettings.conta['setupModel']!.endpoint;
-    token = _appSettings.conta['setupModel']!.token;
-    userID = _appSettings.conta['setupModel']!.userID;
+    endpoint = setupModel?.endpoint;//troquei do appsetings
+    token = setupModel?.token;
+    userID = setupModel?.userID;
 
     final dio = Dio();
     var url = "http://$endpoint/$rotina";
@@ -96,13 +104,16 @@ class AppService extends ChangeNotifier {
     );
   }
 
-  Future<void> logout(BuildContext context) async {
+  Future<void>? logout(BuildContext? context) async {
+    if (context == null) {
+      print('Contexto nulo. Não é possível fazer logout.');
+    }
     await _appSettings.setLocale('', false, null);
-    _navigateToLogin(context);
+    navigateToLogin(context!);
     print('Logout realizado. Navegar para Login');
   }
 
-  void _navigateToLogin(BuildContext context) {
+  void navigateToLogin(BuildContext context) {
     Navigator.pushReplacement(
       context,
       MaterialPageRoute(builder: (context) => const Login()),
