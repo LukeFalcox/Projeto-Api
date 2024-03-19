@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:teste_api/app/app_service_setup.dart';
 import 'package:teste_api/app/models/transformador.dart';
-import 'package:teste_api/pages/login.dart';
 
 class Edit extends StatefulWidget {
   
@@ -43,10 +42,7 @@ class _EditState extends State<Edit> {
               IconButton(
                 icon: const Icon(Icons.logout),
                 onPressed: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(builder: (context) => const Login()),
-                  );
+                  Navigator.of(context).pushNamed('/login',);
                 },
               ),
             ],

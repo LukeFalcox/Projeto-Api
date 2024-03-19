@@ -26,6 +26,7 @@ dependencies:
   mocktail: ^1.0.3
   mockito: ^5.4.4
   web: ^0.5.0
+  signals: ^4.5.1
 
 flutter_native_splash:
   color: "#808080"

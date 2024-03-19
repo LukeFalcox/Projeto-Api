@@ -9,7 +9,9 @@ import 'package:provider/provider.dart';
 import 'package:teste_api/pages/resetPasswordPage.dart';
 
 class Login extends StatefulWidget {
-  const Login({super.key});
+  static Login _instance = Login._();
+  static Login  get instance => _instance;
+  const Login._({super.key});
 
   @override
   State<Login> createState() => CreatedLogin();
@@ -195,15 +197,7 @@ class CreatedLogin extends State<Login> {
 
                     Navigator.pop(context);
 
-                    Navigator.pushReplacement(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => ChangeNotifierProvider.value(
-                          value: appSettings,
-                          child: const Home(),
-                        ),
-                      ),
-                    );
+                    Navigator.of(context).pushNamed('/home',);
                   } catch (error) {
                     Navigator.pop(context);
 

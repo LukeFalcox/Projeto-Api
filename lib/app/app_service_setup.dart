@@ -114,10 +114,7 @@ class AppService extends ChangeNotifier {
   }
 
   void navigateToLogin(BuildContext context) {
-    Navigator.pushReplacement(
-      context,
-      MaterialPageRoute(builder: (context) => const Login()),
-    );
+   Navigator.of(context).pushNamed('/login',);
     print('Navegar para Login.');
   }
 }

@@ -4,7 +4,9 @@ import 'package:teste_api/app/configs/AppSettings.dart';
 import 'package:teste_api/widgets/NavBar.dart';
 
 class Home extends StatefulWidget {
-  const Home({super.key});
+  static Home _instance = Home._();
+  static Home get instance => _instance;
+  const Home._({super.key});
 
   @override
   State<Home> createState() => _HomeState();

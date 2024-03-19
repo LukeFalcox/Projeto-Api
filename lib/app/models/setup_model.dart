@@ -17,6 +17,7 @@ class SetupModel {
   Map<String, dynamic>? menu;
   // List? menuV2;
 
+  
   SetupModel({
     this.userID,
     this.token,

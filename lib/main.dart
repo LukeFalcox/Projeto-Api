@@ -26,13 +26,14 @@ void main() async {
           create: (context) => appSettings,
         ),
       ],
-      child: const MyApp(),
+      child: MyApp(),
     ),
   );
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+   MyApp({super.key});
+  
 
   @override
   Widget build(BuildContext context) {
@@ -43,11 +44,18 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.grey,
       ),
       routes: {
-  '/': (context) => const Login(),
-  '/home': (context) => Home(),
+  '/': (context) => SplashScreen.instance,
+  '/login' : (context) => Login.instance ,
+  '/home': (context) => Home.instance,
   '/edit': (context) {
   final args = ModalRoute.of(context)!.settings.arguments;
-  return Edit(filtroModel: args as FiltroModel);
+  if (args == null) {
+    return Home.instance;
+  }
+  else{
+    return Edit(filtroModel: args as FiltroModel);
+  }
+  
 },
 },
     );

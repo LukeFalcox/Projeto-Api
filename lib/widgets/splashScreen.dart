@@ -7,7 +7,9 @@ import 'package:teste_api/pages/home.dart';
 import 'package:teste_api/pages/login.dart';
 
 class SplashScreen extends StatefulWidget {
-  const SplashScreen({super.key});
+  static SplashScreen _instance = SplashScreen._();
+  static SplashScreen get instance => _instance;
+  const SplashScreen._({super.key});
 
   @override
   State<SplashScreen> createState() => _SplashScreenState();
@@ -21,9 +23,9 @@ class _SplashScreenState extends State<SplashScreen> {
     return Consumer<AppSettings>(
       builder: (context, appSettings, child) {
         if (appSettings.conta['isAuth'] == true) {
-          return const Home();
+          return Home.instance;
         } else {
-          return const Login();
+          return Login.instance;
         }
       },
     );

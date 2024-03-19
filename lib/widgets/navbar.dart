@@ -10,7 +10,6 @@ import 'package:teste_api/app/configs/AppSettings.dart';
 import 'package:teste_api/app/models/Exp.dart';
 import 'package:teste_api/app/models/Rotinas.dart';
 import 'package:teste_api/app/models/transformador.dart';
-import 'package:teste_api/pages/edit.dart';
 import 'package:teste_api/widgets/buttonLogout.dart';
 
 class NavBar extends StatefulWidget {

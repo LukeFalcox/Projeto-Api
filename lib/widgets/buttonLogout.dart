@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:teste_api/app/app_service_setup.dart';
-import 'package:teste_api/app/configs/AppSettings.dart';
-import 'package:teste_api/pages/login.dart';
 
 class ButtonLogout extends StatelessWidget {
   final AppService appService;

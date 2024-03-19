@@ -1,15 +1,16 @@
+// ignore_for_file: use_build_context_synchronously
+
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:teste_api/app/app_service_setup.dart';
 import 'package:teste_api/app/configs/AppSettings.dart';
-import 'package:teste_api/pages/home.dart';
 
 class ButtonLogin extends StatelessWidget {
   final String nameController;
   final String passwordController;
   final String aliasController;
 
-  ButtonLogin({
+  const ButtonLogin({
     super.key,
     required this.nameController,
     required this.passwordController,
@@ -19,13 +20,13 @@ class ButtonLogin extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ElevatedButton(
-      key: Key('TESTE'), 
+      key: const Key('TESTE'), 
   onPressed: () async {
     showDialog(
       context: context,
       barrierDismissible: false,
       builder: (BuildContext context) {
-        return  AlertDialog(// Defina a chave aqui
+        return  const AlertDialog(// Defina a chave aqui
           content: Column(
             mainAxisSize: MainAxisSize.min,
             children: [
@@ -55,15 +56,7 @@ class ButtonLogin extends StatelessWidget {
 
           Navigator.pop(context);
 
-          Navigator.pushReplacement(
-            context,
-            MaterialPageRoute(
-              builder: (context) => ChangeNotifierProvider.value(
-                value: appSettings,
-                child: const Home(),
-              ),
-            ),
-          );
+         Navigator.of(context).pushNamed('/home',);
         } catch (error) {
           Navigator.pop(context);
 
